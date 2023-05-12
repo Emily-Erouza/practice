@@ -1,50 +1,31 @@
-import { useState } from "react";
+import React from "react";
 
-const Display = ({ name, password, contact }) => {
-
-const [list, setList] = useState([]);
-
-  // return (
-  //   <div>
-  //     {name} {password} {contact}{" "}
-  //   </div>
-
-  // );
-
-
-return(
-<div>
-<table>
-<thead>
-  <tr>
-    <th></th>
-    <th>name</th>
-    <th>password</th>
-<th>contacts</th>
-  </tr>
-</thead>
-<tbody>
-{
-list.map = (item,i) => {
- (
-<>
-<tr Key={i}>
-<td>{item.name}</td>
-<td>{item.password}</td>
-<td>{item.contact}</td>
-</tr>
-</>
-)
-}
-
-
-}
-</tbody>
-</table>
-</div>
-
-);
-
+const Display = ({ list }) => {
+  return (
+    <div>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Contact</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list &&
+            list.map((item) => {
+              return (
+                <tr class="active-row">
+                  <td>{item.name}</td>
+                  <td>{item.password}</td>
+                  <td>{item.contact}</td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default Display;

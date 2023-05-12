@@ -1,80 +1,67 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Display from "./Display";
 
-const Form = ({ list, setList }) => {
+const Form = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [contact, setContact] = useState("");
+  const [list, setList] = useState();
 
   const save = (e) => {
-    console.log("pasword name contact", password, name, contact);
-    setList([...list, { name: name, password: password, contact: contact }]);
+    e.preventDefault();
+    setList([{ name, password, contact }]);
   };
 
   return (
-    <div className=" form-container">
-      <div>
-        <label for="fname">Username</label>
-        <br />
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your name"
-          onChange={(e) => setName(e.target.value)}
-          // value={name}
-        />
-      </div>
-      <br />
-
-      <div>
-        <label for="password">Password</label>
-        <br />
-        <input
-          type="text"
-          name="password"
-          placeholder="Enter your password"
-          onChange={(e) => setPassword(e.target.value)}
-          // value={password}
-        />
-      </div>
-
-      <br />
-
-      <label for="contact">Contacts</label>
-      <br />
-      <input
-        type="text"
-        name="contact"
-        placeholder=" Enter your contact"
-        onChange={(e) => setContact(e.target.value)}
-        // value={contact}
-      />
-      <br />
-
-      <button type="button" className="btn" onClick={() => save()}>
-        Save
-      </button>
-      {/* <button onClick={() => save()}>save </button> */}
-      <Display name={name} password={password} contact={contact} />
+    <div>
+      <form onSubmit={save} className="form">
+        <div className="title">Register form</div>
+        <div className="subtitle">Hello please Register</div>
+        <div className="input-container ic1">
+          <input
+            className="input"
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder=" "
+          />
+          <div className="cut"></div>
+          <label for="firstname" className="placeholder">
+            First name
+          </label>
+        </div>
+        <div className="input-container ic2">
+          <input
+            className="input"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder=" "
+          />
+          <div className="cut"></div>
+          <label for="lastname" className="placeholder">
+            Password
+          </label>
+        </div>
+        <div className="input-container ic2">
+          <input
+            id="email"
+            className="input"
+            onChange={(e) => setContact(e.target.value)}
+            type="number"
+            placeholder=" "
+          />
+          <div className="cut cut-short"></div>
+          <label for="email" className="placeholder">
+            Contact
+          </label>
+        </div>
+        <button type="text" className="submit">
+          submit
+        </button>
+      </form>
+      <div className="divider"></div>
+      <Display list={list} />
     </div>
   );
-
-  {
-    /* <div>
-<table>
-  <tr>
-    <th></th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-</table>
-</div> */
-  }
 };
 
 export default Form;
